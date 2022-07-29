@@ -4,9 +4,28 @@ import ConnexionView from "../views/ConnexionView"
 import CreateCompteView from "../views/CreateCompteView"
 import CreateTrajetView from "../views/CreateTrajetView"
 import CovoiturageRechercheView from "../views/CovoiturageRechercheView"
+import MesCovoituragesView from "../views/MesCovoituragesView"
+import DetailsCovoiturageView from "../views/DetailsCovoiturageView"
+import AccueilView from "../views/AccueilView"
+import MonProfilView from "../views/MonProfilView"
+
 Vue.use(VueRouter)
 
 const routes = [
+
+  {
+    path: '/',
+    name: 'AccueilView',
+    component: AccueilView
+
+  },
+
+  {
+    path: '/MonProfilView',
+    name: 'MonProfilView',
+    component: MonProfilView
+  },
+
   {
     path: '/ConnexionView',
     name: 'ConnexionView',
@@ -31,6 +50,16 @@ const routes = [
     path: '/CovoiturageRechercheView',
     name: 'CovoiturageRechercheView',
     component: CovoiturageRechercheView
+  },
+  {
+    path: '/MesCovoituragesView',
+    name: 'MesCovoituragesView',
+    component: MesCovoituragesView
+  },
+  {
+    path: '/DetailsCovoiturageView',
+    name: 'DetailsCovoiturageView',
+    component: DetailsCovoiturageView
   },
   
 ]

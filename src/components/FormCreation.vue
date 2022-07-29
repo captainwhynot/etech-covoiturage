@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form class="mt-16">
     <v-row>
          <v-text-field outlined label="Nom d'utilisateur" v-model="username"
          :rules="[rules.required]"></v-text-field>
@@ -27,16 +27,66 @@
             @click:append="show2 = !show2"
             :rules="[rules.required, rules.same]"
         ></v-text-field>
-    </v-row>
-    <v-spacer/>
-    <v-row>
-        <span> Je souhaite compléter mon profil maintenant </span>
-        <v-checkbox  label="OUI" @click="this.completeProfile=!this.completeProfile">  </v-checkbox>
         
     </v-row>
     <v-row>
-        <span> Pour pouvoir profiter de l'ensemble des fonctionnalités du site, votre profil doit etre complété. Vous pouvez compléter votre profil après avoir créer votre compte</span>
+        <v-text-field outlined v-model="prenom" label="Prénom"></v-text-field>
+        <v-text-field outlined v-model="nom" label="Nom"></v-text-field>
     </v-row>
+    <v-row>
+        <v-text-field outlined v-model="adresseMail" label="Adresse mail"></v-text-field>
+    </v-row>
+    <v-row>
+        <v-text-field outlined v-model="numeroTelephone" label="Numéro de téléphone"></v-text-field>
+    </v-row>
+    <v-row>
+        <v-menu
+            ref="menu"
+            v-model="menu"
+            :close-on-content-click="false"
+            :return-value.sync="date"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+            >
+            <template v-slot:activator="{ on, attrs }" >
+              <v-text-field
+                v-model="date"
+                label="Date de naissance"
+                outlined
+                readonly
+                v-bind="attrs"
+                v-on="on"
+                prepend-icon="mdi-calendar"
+
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              locale="fr"
+              v-model="date"
+              no-title
+              scrollable
+              >
+              <v-spacer></v-spacer>
+              <v-btn
+                text
+                color="primary"
+                @click="menu = false"
+                >
+                Cancel
+              </v-btn>
+              <v-btn
+                text
+                color="primary"
+                @click="$refs.menu.save(date)"
+                >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </v-menu> 
+    </v-row>
+    <v-spacer/>
+    
     <v-btn @click="ActionCreer">CREER UN COMPTE</v-btn>
   </v-form>
 </template>
@@ -45,12 +95,18 @@
 export default {
     data() {
         return {
+            menu: false,
             completeProfile: false,
             show: false,
             show2: false,
             username: "",
             password: "",
             samePassword: "",
+            adresseMail: "",
+            nom: "",
+            prenom:"",
+            numeroTelephone:"",
+            date:"", 
             rules: {
                 
                 required: value => !!value || 'Ce champ ne peut pas etre vide',
@@ -61,7 +117,14 @@ export default {
     },
     methods: {
         ActionCreer() {
-            console.log("TEST CREATE");
+            console.log("LES VARS: \n" 
+            +"nom: "+this.nom+"\n"
+            +"prenom: "+this.prenom+"\n"
+            +"username: "+this.username+"\n"
+            +"numeroTelephone: "+this.numeroTelephone+"\n"
+            +"adresseMail: "+this.adresseMail+"\n"
+            +"password: "+this.password+"\n" 
+            +"dateNaissance: "+this.date+"\n");
         }
     },
     

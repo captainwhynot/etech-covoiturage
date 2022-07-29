@@ -1,8 +1,8 @@
 <template>
   <v-form>
             <v-row>
-                <v-autocomplete outlined prepend-inner-icon="mdi-map-marker" label="Ville de départ" :items="villes"/>
-                <v-autocomplete outlined prepend-inner-icon="mdi-map-marker" label="Ville d'arrivée" :items="villes"/>
+                <v-autocomplete v-model="villeDepart" outlined prepend-inner-icon="mdi-map-marker" label="Ville de départ" :items="villes"/>
+                <v-autocomplete v-model="villeArrivee" outlined prepend-inner-icon="mdi-map-marker" label="Ville d'arrivée" :items="villes"/>
                 <v-menu
                     ref="menu"
                     v-model="menu"
@@ -11,10 +11,11 @@
                     transition="scale-transition"
                     offset-y
                     min-width="auto"
+                   
                     >
                     <template v-slot:activator="{ on, attrs }" >
                     <v-text-field
-                        v-model="date"
+                        v-model="dateDepart"
                         label="Date de départ"
                         outlined
                         readonly
@@ -26,7 +27,7 @@
                     </template>
                     <v-date-picker
                     locale="fr"
-                    v-model="date"
+                    v-model="dateDepart"
                     no-title
                     scrollable
                     >
@@ -47,8 +48,9 @@
                     </v-btn>
                     </v-date-picker>
                 </v-menu> 
-                <v-select prepend-inner-icon="mdi-account" :items="items" label="Nombre places max" outlined></v-select>
+                <v-select v-if="false" prepend-inner-icon="mdi-account" :items="items" label="Nombre places max" outlined></v-select>
             </v-row>
+        <v-btn @click="actionRechercher"> RECHERCHER </v-btn>
         </v-form>
 </template>
 
@@ -56,8 +58,17 @@
 export default {
     data() {
         return {
+            villeDepart: "",
+            villeArrivee: "",
+            dateDepart: "",
+            nombrePlaces: Number,
             villes: ["Ville1","Ville2","Ville3","Ville4"],
             items: [1,2,3,4,5,6,7,8],
+        }
+    },
+    methods: {
+        actionRechercher() {
+            console.log("TEST BTN "+this.villeDepart+" "+this.villeArrivee+" "+this.dateDepart);
         }
     },
 }

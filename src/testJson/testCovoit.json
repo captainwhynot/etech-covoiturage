@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "note": 3.5,
+      "nom": "Abdel",
+      "depart": "Marseille",
+      "arrivee": "Paris",
+      "prix": 29,
+      "date": "08/24/2022",
+      "placeTotal": "4",
+      "placeLibre": "3",
+      "itineraires": ["ville1"]   
+    },
+    {
+      "id": 2,
+      "note": 2.8,
+      "nom": "Karim",
+      "depart": "Angers",
+      "arrivee": "Toulouse",
+      "prix": 19,
+      "date": "08/24/2022",
+      "placeTotal": "4",
+      "placeLibre": "2",
+      "itineraires": []
+    },
+    {
+      "note": 4.3,
+      "id": 3,
+      "nom": "Jeans",
+      "depart": "Tourcoing",
+      "date": "08/24/2022",
+      "arrivee": "Paris",
+      "prix": 15,
+      "placeTotal": "4",
+      "placeLibre": "1",
+      "itineraires": ["ville1","ville2"]
+    }
+  ]

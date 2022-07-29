@@ -70,9 +70,9 @@
                         ></v-time-picker>
                     </v-menu>
                 </v-row>
-                <v-row> <v-checkbox  label="Profils certifiés">  </v-checkbox> </v-row>
-                <v-row> <v-checkbox  label="Espace entre les sièges">  </v-checkbox> </v-row>
-                <v-row> <v-checkbox  label="Autorisation de fumer">  </v-checkbox> </v-row>
+                <v-row v-if="false"> <v-checkbox  label="Profils certifiés">  </v-checkbox> </v-row>
+                <v-row v-if="false"> <v-checkbox  label="Espace entre les sièges">  </v-checkbox> </v-row>
+                <v-row v-if="false"> <v-checkbox  label="Autorisation de fumer">  </v-checkbox> </v-row>
             </v-form>
             <div class="mr-16 pr-16">
                 <v-card
@@ -80,23 +80,27 @@
                 dark
                 class="mx-auto my-3"
                 width="450"
-                v-for="index in 10" :key="index"
+                v-for="item in this.covoits" :key="item.id"
                 >
+                
                 <div class="d-flex justify-space-between">
                     <div class="d-flex justify-start ">
                         <v-avatar class="block ml-3 mt-4 mr-n3" width="60" height="60"> <img src="../image/imgAvatar.png"/> </v-avatar>
                         <div class="ml-2">
                             <v-card-title class="text-h5">
-                            NOM
+                            {{item.nom}}
                             </v-card-title>
                                 
-                            <v-card-subtitle class="text-h6"> <v-icon class="mb-1">mdi-star</v-icon> 4.9 </v-card-subtitle>  
+                            <v-card-subtitle class="text-h6"> <v-icon class="mb-1">mdi-star</v-icon> {{item.note}} </v-card-subtitle>  
                         </div>                
                     </div>
                     <div>
-                        <h1 class="mt-2 mr-2">29 €</h1>
-                        <span class="mt-n3 mr-2"> Places libres: 3/4</span>
+                        <h1 class="mt-2 mr-2">{{item.prix}} €</h1>
+                        <span class="mt-n3 mr-2"> Places libres: {{item.placeLibre}}/{{item.placeTotal}}</span>
+                        <br/>
+                        <span class="mt-4 mr-2"><v-icon class="mb-1">mdi-calendar</v-icon>{{item.date}}</span>
                     </div>
+                    
                     
                     
                 </div>  
@@ -105,14 +109,14 @@
                     <div class="d-flex justify-start">
                         <div class="ml-2">
                             <span><v-icon class="mb-1">mdi-map-marker</v-icon> Départ :  </span>
-                            <span>Marseille</span>
+                            <span>{{item.depart}}</span>
                             <br/>
-                            <span>Etapes du trajet: </span>
-                            <div v-for="item in items" :key="item.ville">
-                                <span> <v-icon class="mb-1">mdi-pin-outline</v-icon>{{item.ville}}</span>
+                            <span v-if="item.itineraires.length != 0">Etapes du trajet: </span>
+                            <div v-for="itin in item.itineraires" :key="itin">
+                                <span> <v-icon class="mb-1">mdi-pin-outline</v-icon>{{itin}}</span>
                             </div>
                             <span ><v-icon class="mb-1">mdi-map-marker</v-icon> Arrivée :  </span>
-                            <span>Paris</span>
+                            <span>{{item.arrivee}}</span>
                             <br/>
                             
                         </div>
@@ -123,6 +127,7 @@
                             outlined
                             rounded
                             small
+                            @click="printID(item.id)"
                             >
                             VOIR DETAILS
                         </v-btn>
@@ -136,11 +141,14 @@
 
 <script>
 import BarreRecherche from './BarreRecherche'
+import testCovoit from '../testJson/testCovoit.json'
 export default {
     components: { BarreRecherche },
     
     data() {
         return {
+            tabIndex: [],
+            covoits: testCovoit,
             menu: false,
             menu2: false,
             items: [
@@ -150,6 +158,15 @@ export default {
             ]
         }
     },
+    methods: {
+        
+        printID(givenID){
+            this.$router.push({name:'DetailsCovoiturageView', params: {id: givenID}}); 
+            
+        }
+    },
+
+    
    
 }    
 </script>

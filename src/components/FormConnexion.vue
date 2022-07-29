@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form class="mt-16">
     <v-row>
          <v-text-field v-model="username" outlined label="Nom d'utilisateur" 
          :rules="[rules.required]">
@@ -21,7 +21,8 @@
         ></v-text-field>
     </v-row>
     <v-row>
-        <span> Vous n'avez pas de compte ? </span>
+        <!-- <span :to="routeCreate"> Vous n'avez pas de compte ? </span> -->
+        <a href="/CreateCompteView"> Vous n'avez pas de compte ? </a>
     </v-row>
     <v-row>
         <span> Mot de passe oublié </span>
@@ -40,6 +41,7 @@
 export default {
     data() {
         return {
+            routeCreate: "/CreateCompteView",
             show: false,
             username: "",
             password: "",
@@ -52,7 +54,9 @@ export default {
     },
     methods: {
         ActionConnexion() {
-            console.log(this.username);
+            console.log("LES VARS : \n"
+            +"username: "+this.username+"\n"
+            +"password: "+this.password+"\n");
         }
     },
 }
