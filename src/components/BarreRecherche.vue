@@ -32,20 +32,7 @@
                     scrollable
                     >
                     <v-spacer></v-spacer>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="menu = false"
-                        >
-                        Cancel
-                    </v-btn>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.menu.save(date)"
-                        >
-                        OK
-                    </v-btn>
+                    
                     </v-date-picker>
                 </v-menu> 
                 <v-select v-if="false" prepend-inner-icon="mdi-account" :items="items" label="Nombre places max" outlined></v-select>

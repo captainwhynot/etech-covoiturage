@@ -1,13 +1,20 @@
 <template>
     <div>
 
-        <h2 class="d-flex justify-center"> Mes covoiturages en tant que </h2>
+        <h2 class="d-flex justify-center"> Mes trajets a venir en tant que </h2>
         <v-row justify="space-around" class="mt-4">
             
             <v-btn @click="conducteur" width="500" color="primary" depressed > CONDUCTEUR </v-btn>
             <v-btn @click="passager" width="500" color="primary" depressed> PASSAGER </v-btn>
         </v-row>
         
+        <div v-if="covConducteur">
+            <h1> CLIC CONDUCTEUR</h1>
+        </div>
+
+        <div v-if="covPassager">
+            <h1> CLIC passager</h1>
+        </div>
         <div v-if="covPassager" class="mt-4">
                 <v-card
                 
@@ -31,8 +38,8 @@
                         </div>                
                     </div>
                     <div>
-                        <h1 class="mt-2 mr-2"> -{{item.prix}} €</h1>
-                        
+                        <h1 class="mt-2 mr-2">{{item.prix}} €</h1>
+                        <span class="mt-n3 mr-2"> Places libres: {{item.placeLibre}}/{{item.placeTotal}}</span>
                         <br/>
                         <span class="mt-4 mr-2"><v-icon class="mb-1">mdi-calendar</v-icon>{{item.date}}</span>
                     </div>
@@ -67,6 +74,15 @@
                             >
                             VOIR DETAILS
                         </v-btn>
+                            <v-btn
+                            class="ml-2 mt-5"
+                            outlined
+                            rounded
+                            small
+                            @click="ActionAnnuler(item.id)"
+                            >
+                            ANNULER
+                        </v-btn>
                         </v-card-actions>  
                 </div>  
                 </v-card>
@@ -94,7 +110,8 @@
                         </div>                
                     </div>
                     <div>
-                        <h1 class="mt-2 mr-2">+{{item.prix}} €</h1>
+                        <h1 class="mt-2 mr-2">{{item.prix}} €</h1>
+                        <span class="mt-n3 mr-2"> Places libres: {{item.placeLibre}}/{{item.placeTotal}}</span>
                         <br/>
                         <span class="mt-4 mr-2"><v-icon class="mb-1">mdi-calendar</v-icon>{{item.date}}</span>
                     </div>
@@ -128,6 +145,15 @@
                             @click="ActionDetails(item.id)"
                             >
                             VOIR DETAILS
+                        </v-btn>
+                            <v-btn
+                            class="ml-2 mt-5"
+                            outlined
+                            rounded
+                            small
+                            @click="ActionAnnuler(item.id)"
+                            >
+                            ANNULER
                         </v-btn>
                         </v-card-actions>  
                 </div>  
@@ -161,10 +187,14 @@ methods: {
     },
     ActionDetails(idTransfer){
         if(this.covPassager)
-            this.$router.push({name:'DetailsCovoiturageView', params: {id: idTransfer, afficherConducteur: true, reserver: false }});
+            this.$router.push({name:'DetailsCovoiturageView', params: {id: idTransfer, afficherConducteur: true, reserver: false}});
         else if(this.covConducteur)
             this.$router.push({name:'DetailsCovoiturageView', params: {id: idTransfer, afficherConducteur: false, reserver: false }});
 
+    },
+
+    ActionAnnuler(idClicked){
+        console.log(idClicked)
     }
 },
 }

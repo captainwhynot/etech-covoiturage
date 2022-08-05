@@ -8,6 +8,8 @@ import MesCovoituragesView from "../views/MesCovoituragesView"
 import DetailsCovoiturageView from "../views/DetailsCovoiturageView"
 import AccueilView from "../views/AccueilView"
 import MonProfilView from "../views/MonProfilView"
+import ReserverCovoiturageView from "../views/ReserverCovoiturageView"
+import MesReservationsView from "../views/MesReservationsView"
 
 Vue.use(VueRouter)
 
@@ -19,6 +21,20 @@ const routes = [
     component: AccueilView
 
   },
+  {
+    path: '/ReserverCovoiturageView',
+    name: 'ReserverCovoiturageView',
+    component: ReserverCovoiturageView
+
+  },
+
+  {
+    path: '/MesReservationsView',
+    name: 'MesReservationsView',
+    component: MesReservationsView
+
+  },
+
 
   {
     path: '/MonProfilView',

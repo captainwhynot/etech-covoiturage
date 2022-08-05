@@ -40,10 +40,19 @@
 
           <v-list-item router :to="routerMesCovoiturages">
             <v-list-item-icon>
+              <v-icon>mdi-map-marker-multiple</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title >Historique trajets</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item router :to="routerMesReservations">
+            <v-list-item-icon>
               <v-icon>mdi-car-side</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title >Covoiturages</v-list-item-title>
+              <v-list-item-title >Trajets à venir</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -52,7 +61,7 @@
               <v-icon>mdi-forum</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>Messages</v-list-item-title>
+              <v-list-item-title>Messages (non implémenté)</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -61,7 +70,7 @@
               <v-icon>mdi-currency-eur</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>Transactions</v-list-item-title>
+              <v-list-item-title>Transactions (non implémenté)</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -95,6 +104,7 @@ export default {
       routerMesCovoiturages: "/MesCovoituragesView",
       routerMonProfil: "/MonProfilView",
       routerAccueil: "/",
+      routerMesReservations: "/MesReservationsView",
       connected: true
 
     }

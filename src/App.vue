@@ -8,6 +8,8 @@
       <!-- <DetailsCovoiturage></DetailsCovoiturage> -->
       <!-- <AccueilComp></AccueilComp> -->
       <!-- <MonProfil></MonProfil> -->
+      <!-- <ReserverCovoiturage></ReserverCovoiturage> -->
+      <!-- <TestAPI></TestAPI> -->
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -16,6 +18,8 @@
 <script>
 
 import HeaderComp from './components/HeaderComp';
+// import ReserverCovoiturage from './components/ReserverCovoiturage'
+
 //import ChangePassword from './components/ChangePassword'
 //import PasswordOublie from './views/PasswordOublie';
 // import DetailsCovoiturage from './components/DetailsCovoiturage';
@@ -25,6 +29,7 @@ import HeaderComp from './components/HeaderComp';
 //  import AccueilComp from './components/AccueilComp';
 
 // import TestAPI from './components/TestAPI';
+
 // import FormTrajet from './components/FormTrajet';
 // import FormConnexion from './components/FormConnexion'
 // import FormCreation from './components/FormCreation'

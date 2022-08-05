@@ -26,8 +26,18 @@
     </div>
   </form>
   <!-- v-on:keyup.enter="entrerAdr" -->
-<v-autocomplete @keyup="entrerAdr"  :search-input.sync="adrDepart" id="test" outlined prepend-icon="mdi-map-marker" label="Ville de départ" :items="villes" return-object/>
-<v-btn @click="test"> </v-btn>
+  <!-- @keyup="entrerAdr" -->
+  <v-autocomplete   :search-input.sync="adrDepart" id="test" outlined prepend-icon="mdi-map-marker" label="Ville de départ" :items="villes" return-object /> 
+    <v-btn @click="entrerAdr"> TEST </v-btn>
+  
+  <v-row>
+    <v-text-field @change="isAutocomplete=false" v-model="adrDepart" label="Ville de départ" outlined prepend-icon="mdi-map-marker" clearable> </v-text-field>
+    <v-btn @click="entrerAdr2" dark fab small color="green"> <v-icon dark>mdi-checkbox-marked-circle</v-icon> </v-btn>
+    <v-btn @click="adrDepart='' , isAutocomplete=false" dark fab small color="red"> <v-icon dark>mdi-close-circle</v-icon> </v-btn>
+    
+    
+  </v-row>
+  
 </div>
 
 </template>
@@ -39,6 +49,7 @@ import axios from 'axios'
 export default{
     data() {
       return {
+        isAutocomplete: false,
         adrDepart: null,
         villes: [],
         //villes: [{ville: "ville1"},{ville: "ville2"}],
@@ -78,8 +89,16 @@ export default{
           this.villes=nvTab;
           console.log("TabVilles apres:\n"+this.villes);
         })
-      }
-      
+      },
+      entrerAdr2(){
+        var res= this.adrDepart.split(' ').join("+");
+        axios.get("https://api-adresse.data.gouv.fr/search/?q="+res+"&limit=1").then(response => {
+          
+          console.log(response.data.features[0].properties.label)
+          this.adrDepart = response.data.features[0].properties.label
+          this.isAutocomplete=true
+        })
+      },
     },
 
     /*mounted () {
