@@ -1,5 +1,8 @@
+<!-- component pour consulter les informations / modifier les informations de son profil (incomplet) 
+la pages n'est pas automatisé avec un fichier json et utilise des valeurs par défaut-->
 <template>
 <div class="marge">
+    <!-- affichage de son nom/etat de son compte -->
     <v-card class="mt-6">
       <div class="d-flex justify-start ">
                         <v-avatar class="block ml-3 mt-4 mr-n3" width="60" height="60"> <img src="../image/imgAvatar.png"/> </v-avatar>
@@ -7,29 +10,33 @@
                             <v-card-title class="text-h5">
                             DUJARDIN JEAN
                             </v-card-title>
-                                
+                            <!-- profil certifié ou non -->
                             <v-card-subtitle v-if="profilCertifie" class="text-h6">  PROFIL CERTIFIÉ  <v-icon class="mb-1"> mdi-shield-check</v-icon> </v-card-subtitle> 
                             <v-card-subtitle v-if="!profilCertifie" class="text-h6">  PROFIL A CERTIFIER <v-icon class="mb-1"> mdi-shield-off</v-icon> </v-card-subtitle> 
                         </div>                
                     </div>
     </v-card>
     
-   
+
+    <!-- changer le type d'informations du compte à afficher -->
     <v-row justify="space-around" class="d-flex mt-8">
             
       <v-btn  width="450" color="primary" depressed @click="printInfos = true"> VOS INFORMATIONS </v-btn>
       <v-btn  width="450" color="primary" depressed @click="printInfos = false"> PARAMETRES COMPTE </v-btn>
     </v-row>
   <br/><br/><br/>  
+<!-- affichage des informations personnelles -->
 <div v-if="printInfos">
   <v-form>
     <h1>Mes informations personnelles</h1>
     <br/>
+    <!-- si l'utilisateur a rempli sa bio ou non -->
     <v-row class="mb-4">
       <span v-if="!bioComplete"> <v-icon class="mb-1">mdi-plus-circle-outline</v-icon> Ajoutez une description à votre compte </span>
       <span v-if="bioComplete"> <v-icon class="mb-1">mdi-check-circle</v-icon> Modifier la description </span>
     </v-row>
     
+    <!-- affichage des champs de modifications ou non si l'utilisateur choisi de modifier ses infos -->
     <v-row>
       <span> Nom : </span> <span v-if="!modif"> DUJARDIN </span> <v-text-field v-if="modif" label="DUJARDIN"></v-text-field>
     </v-row>
@@ -49,7 +56,10 @@
       <v-btn v-if="!modif" @click="modif=!modif"> Modifier mes informations </v-btn> <v-btn v-if="modif" @click="modif=!modif"> Valider modifications </v-btn>
     </v-row>
   </v-form>
+
   <br/><br/><br/>
+
+  <!-- affichage de l'état de la certification du compte, et des étapes à effectuer si jamais le compte n'est pas totalement certifié -->
   <div>
     <h1> Certifier son profil</h1>
     <span v-if="!idVerifie"><v-icon class="mb-1">mdi-plus-circle-outline</v-icon> Vérification d'identité </span>
@@ -65,6 +75,7 @@
     <br/>
 </div>   
    
+   <!-- gestion des vehicules de l'utilisateur (aucune interactions implémentées) -->
    <div>
     <h1> Mes véhicules</h1>
     <span><v-icon class="mb-1">mdi-plus-circle-outline</v-icon> Ajouter un véhicule </span>
@@ -88,7 +99,7 @@
      
   </div>
   <br/><br/><br/>
-  
+  <!-- affichage des parametres du compte (incomplet) -->
   <div v-if="!printInfos">
     <span> Modifier mon mot de passe </span>
     <br/>
@@ -115,13 +126,15 @@
 export default {
 data() {
   return {
-    bioCOmplete: true,
+    //var pour gerer affichage des élements
+    bioComplete: true,
     profilCertifie: false,
+    modif: false,
+    printInfos: Boolean,
+    //vars pour les etapes de la certification du compte
     idVerifie: true,
     mailVerifie: true,
     telVerifie: true,
-    modif: false,
-    printInfos: Boolean
   }
 },
 }

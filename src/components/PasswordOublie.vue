@@ -1,3 +1,4 @@
+<!-- Component pour le mot de passe oublié (incomplet) -->
 <template>
   <v-form class="mt-4">
     <span> Entrez l'email lié à votre compte pour réinitialiser votre mot de passe</span>

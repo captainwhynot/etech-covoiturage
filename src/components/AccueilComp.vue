@@ -1,10 +1,14 @@
+
+<!-- Component de la page d'accueil, contient redirections vers creation de trajet / recherche de trajets -->
 <template>
     <div class="everything">
        <h1 class="d-flex justify-center mb-4"> Bienvenue, où désirez vous voyager ?</h1>
+       <!-- formulaire pour la recherche de trajet -->
        <v-form>
             <v-row>
                 <v-text-field v-model="villeDepart" outlined  prepend-inner-icon="mdi-map-marker" label="Ville de départ"></v-text-field>
                 <v-text-field v-model="villeArrivee" outlined prepend-inner-icon="mdi-map-marker" label="Ville d'arrivée"></v-text-field>
+                <!-- menu de selection de la date (recupéré sur la doc Viewtify) -->
                 <v-menu
                     ref="menu"
                     v-model="menu"
@@ -55,7 +59,7 @@
             </v-row>
         
         </v-form>
-
+        <!-- redirection vers le menu de creation d'un trajet -->
         <h1 class="d-flex justify-center mb-4"> Vous etes un conducteur ? </h1>
         <vrow class="d-flex justify-center mb-4">
             <span> Cliquer ici pour poster un covoiturage </span>
@@ -75,18 +79,19 @@ export default {
     //components: { BarreRecherche },
     data() {
         return {
+            //les var dans les vmodel de la barre de recherche de trajet
             villeDepart: "",
             villeArrivee: "",
             dateDepart: "",
-            nombrePlaces: Number,
-            villes: ["Ville1","Ville2","Ville3","Ville4"],
-            items: [1,2,3,4,5,6,7,8],
+           
         }
     },
     methods: {
+        //envoyer les infos de la recherche à la page de recherche
         ActionChercher() {
             this.$router.push({name:'CovoiturageRechercheView', params: {villeDepart: this.villeDepart, villeArrivee: this.villeArrivee, dateDepart: this.dateDepart }});
         },
+        //redirection vers la page de creation de trajet
         ActionPoster(){
             this.$router.push({name:'CreateTrajetView'});
         }
@@ -96,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+//css pour espacer les items entre eux
 .everything{
     margin-top: 50px;
 }

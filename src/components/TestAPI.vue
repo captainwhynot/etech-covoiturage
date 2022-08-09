@@ -1,3 +1,5 @@
+<!-- COMPONENT NON UTILISE DANS LE SITE -->
+
 <template>
 <div class="container" id="divtest">
   <form id="modal_form" action="process_form.php" method="post">

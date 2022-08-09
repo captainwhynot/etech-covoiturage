@@ -1,7 +1,11 @@
+<!-- Le component du header qui est affiché à chaque page -->
+
 <template>
   <nav >   
     <v-toolbar outlined app color="grey lighten-2">
-      <v-app-bar-nav-icon v-if="connected" class="mr-10" @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <!-- on affiche le drawer que si user est connecté -->
+      <v-app-bar-nav-icon v-if="connected" class="mr-10" @click="drawer=!drawer"></v-app-bar-nav-icon>  
+      <!-- logo du site -->
       <router-link to="/"><v-img src="../image/imgLogo.png" max-height="50" max-width="50"></v-img></router-link>
         <v-toolbar-title> 
             <span class=" subheading font-weight-light">ETECH</span>
@@ -9,6 +13,7 @@
             <span class="headline font-weight-dark">COVOITURAGE</span>  
         </v-toolbar-title>
     <v-spacer/>
+    <!-- contenu de la barre de menu avec les redirections vers les autres pages -->
     <div class="liens">
         <ul>
             <li v-if="connected"><a href="/CreateTrajetView" class="black--text text--lighten-2 headline font-weight-dark">CREER TRAJET</a></li>
@@ -20,6 +25,7 @@
     </div>
     </v-toolbar>
 
+    <!-- Le menu sur le coté affiché que si user est connecté -->
     <v-navigation-drawer v-if="connected" app v-model="drawer" class="indigo lighten-3">
       <v-layout column align-center>
         <v-flex class="mt-5">
@@ -97,7 +103,8 @@
 export default {
   data() {
     return {
-      drawer: false,
+      drawer: false, //afficher le menu sur le coté
+      //les routes vers les autres pages
       routerConnexion: "/ConnexionView",
       routerInscription: "/CreateCompteView",
       routerFormTrajet: "/CreateTrajetView",
@@ -105,7 +112,7 @@ export default {
       routerMonProfil: "/MonProfilView",
       routerAccueil: "/",
       routerMesReservations: "/MesReservationsView",
-      connected: true
+      connected: true //si user connecte ou non
 
     }
   },
@@ -122,6 +129,7 @@ export default {
 
 
 <style lang="scss">
+//css pour la barre de page dans le header du css
 .liens{
     margin-left: 100px;
     

@@ -1,11 +1,13 @@
+<!-- Component pour la creation d'un compte, des regles de saisies ont été entrées pour certains champs mais sont incompletes -->
 <template>
   <v-form class="mt-16">
+    <!-- champ pour le nom d'utilisateur -->
     <v-row>
          <v-text-field outlined label="Nom d'utilisateur" v-model="username"
          :rules="[rules.required]"></v-text-field>
     </v-row>
        
-          <!--  -->
+    <!-- les champs pour les mdp -->
     <v-row>
         <v-text-field outlined
             v-model="password"
@@ -29,6 +31,7 @@
         ></v-text-field>
         
     </v-row>
+    <!-- le reste des données personnelles  -->
     <v-row>
         <v-text-field outlined v-model="prenom" label="Prénom"></v-text-field>
         <v-text-field outlined v-model="nom" label="Nom"></v-text-field>
@@ -40,6 +43,7 @@
         <v-text-field outlined v-model="numeroTelephone" label="Numéro de téléphone"></v-text-field>
     </v-row>
     <v-row>
+      <!-- menu de selection de date (issu de la doc vuetify) -->
         <v-menu
             ref="menu"
             v-model="menu"
@@ -95,10 +99,12 @@
 export default {
     data() {
         return {
-            menu: false,
-            completeProfile: false,
-            show: false,
-            show2: false,
+            menu: false, //afficher ou non le menu de selection de date
+            //vars pour afficher ou non les contenu des textfields
+            show: false, //pour le mot de passe
+            show2: false, //pour la validation du mot de passe
+
+            //les vars pour les vmodel des textfields
             username: "",
             password: "",
             samePassword: "",
@@ -107,15 +113,20 @@ export default {
             prenom:"",
             numeroTelephone:"",
             date:"", 
+
+            //les différentes regles pour la validation des champs
             rules: {
                 
-                required: value => !!value || 'Ce champ ne peut pas etre vide',
+                required: value => !!value || 'Ce champ ne peut pas etre vide', 
                 correctPassword: value => (/[A-Z]/.test(value) && /[0-9]/.test(value) && /[#?!@$%^&*-]/.test(value))|| 'Le mot de passe doit correspondre aux regles',
+                //le mot de passe doit avoir au moins 1 maj, 1 chiffre et 1 caractere spécial
                 same: () => this.samePassword === this.password || 'Les mots de passe entrés ne correspondent pas'
+                //les mots de passes entrés dans les 2 champs doivent correspondre
             },
         }
     },
     methods: {
+      //action du bouton pour créer un compte
         ActionCreer() {
             console.log("LES VARS: \n" 
             +"nom: "+this.nom+"\n"

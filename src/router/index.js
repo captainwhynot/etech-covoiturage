@@ -10,7 +10,7 @@ import AccueilView from "../views/AccueilView"
 import MonProfilView from "../views/MonProfilView"
 import ReserverCovoiturageView from "../views/ReserverCovoiturageView"
 import MesReservationsView from "../views/MesReservationsView"
-
+import PasswordOublieView from "../views/PasswordOublieView"
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,6 +25,13 @@ const routes = [
     path: '/ReserverCovoiturageView',
     name: 'ReserverCovoiturageView',
     component: ReserverCovoiturageView
+
+  },
+
+  {
+    path: '/PasswordOublieView',
+    name: 'PasswordOublieView',
+    component: PasswordOublieView
 
   },
 

@@ -1,3 +1,7 @@
+<!-- Component pour l'affichage des reservations en cours de l'utilisateur 
+utilise le fichier json testConvoit dans le testJson pour avoir un affichage automatique de certains covoiturages 
+similaire à MesCovoiturages.vue donc voir ce fichier pour explication des commentaires
+Les différences sont que l'utilisateur peut annuler les reservations depuis les cartes de covoiturage-->
 <template>
     <div>
 
@@ -8,13 +12,6 @@
             <v-btn @click="passager" width="500" color="primary" depressed> PASSAGER </v-btn>
         </v-row>
         
-        <div v-if="covConducteur">
-            <h1> CLIC CONDUCTEUR</h1>
-        </div>
-
-        <div v-if="covPassager">
-            <h1> CLIC passager</h1>
-        </div>
         <div v-if="covPassager" class="mt-4">
                 <v-card
                 

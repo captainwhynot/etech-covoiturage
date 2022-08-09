@@ -1,6 +1,9 @@
+<!-- Component pour l'affichage de l'historique des covoiturages d'un user
+utilise le fichier json testConcoit dans le packages testJson pour avoir un affichage automatique de certains covoiturages -->
 <template>
-    <div>
 
+    <div>
+        <!-- choix de l'historique en tant que passager ou en tant que conducteur -->
         <h2 class="d-flex justify-center"> Mes covoiturages en tant que </h2>
         <v-row justify="space-around" class="mt-4">
             
@@ -8,6 +11,8 @@
             <v-btn @click="passager" width="500" color="primary" depressed> PASSAGER </v-btn>
         </v-row>
         
+        <!-- affichage des covoiturages en tant que passager, meme principe que pour la recherche sauf que seul les details sont consultables 
+        et le gain d'argent affiché est négatif-->
         <div v-if="covPassager" class="mt-4">
                 <v-card
                 
@@ -71,6 +76,8 @@
                 </div>  
                 </v-card>
             </div>
+        <!-- affichage des covoiturages en tant que passager, meme principe que pour la recherche sauf que seul les details sont consultables 
+        et le gain d'argent affiché est positif-->
         <div v-if="covConducteur" class="mt-4">
                 <v-card
                 
@@ -143,26 +150,29 @@ import testCovoit from '../testJson/testCovoit.json'
 export default {
 data() {
     return {
-        covoits: testCovoit,
-        covConducteur: false,
-        covPassager: false,
+        covoits: testCovoit, //mes données du fichier json
+        covConducteur: false, //la var pour l'affichage des cov en Conducteur
+        covPassager: false, //la var pour l'affichage des cov en Passager
     }
 },
 
 methods: {
+    //action du bouton conducteur 
     conducteur() {
       this.covConducteur= true;
       this.covPassager=false;  
     },
-
+    //action du bouton passager
     passager(){
       this.covConducteur= false;
       this.covPassager= true;  
     },
+
+    //action lorsque l'on clique sur le détail d'une carte de covoiturage
     ActionDetails(idTransfer){
-        if(this.covPassager)
+        if(this.covPassager) //si consulte en tant que passager, affiche le conducteur dans les détails
             this.$router.push({name:'DetailsCovoiturageView', params: {id: idTransfer, afficherConducteur: true, reserver: false }});
-        else if(this.covConducteur)
+        else if(this.covConducteur)//si consulte en tant que conducteur, affiche les passagers dans les détails
             this.$router.push({name:'DetailsCovoiturageView', params: {id: idTransfer, afficherConducteur: false, reserver: false }});
 
     }

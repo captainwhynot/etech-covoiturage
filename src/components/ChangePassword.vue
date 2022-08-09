@@ -1,3 +1,4 @@
+<!-- petit formulaire pour la modification de mdp (rien de complexe dans celui la) -->
 <template>
   <div>
     <v-form class="mt-4">
